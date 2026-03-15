@@ -5,7 +5,7 @@
 #include <cmath>
 
 #define FontPath "/usr/share/fonts/truetype/cloister-black/CloisterBlack.ttf"
-const std::string Text = "Hello";
+const std::string Text = "L";
 
 
 int main() {
