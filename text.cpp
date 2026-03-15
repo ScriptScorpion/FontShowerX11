@@ -2,6 +2,7 @@
 #include <fontconfig/fontconfig.h>
 #include <X11/Xft/Xft.h>
 #include <string>
+#include <cmath>
 
 #define FontPath "/usr/share/fonts/truetype/cloister-black/CloisterBlack.ttf"
 const std::string Text = "Hello";
@@ -11,8 +12,8 @@ int main() {
     Display* MainDisplay = XOpenDisplay(0);
     Window RootWindow = XDefaultRootWindow(MainDisplay);
     
-    const int ScreenWidth = XDisplayWidth(MainDisplay, DefaultScreen(MainDisplay));
-    const int ScreenHeight = XDisplayHeight(MainDisplay, DefaultScreen(MainDisplay));
+    const float ScreenWidth = XDisplayWidth(MainDisplay, DefaultScreen(MainDisplay));
+    const float ScreenHeight = XDisplayHeight(MainDisplay, DefaultScreen(MainDisplay));
     
     const int WindowX = 0;
     const int WindowY = 0;
@@ -57,7 +58,7 @@ int main() {
     RTextColor.alpha = 0xffff;
     XftColorAllocValue(MainDisplay, DefaultVisual(MainDisplay, DefaultScreen(MainDisplay)), DefaultColormap(MainDisplay, DefaultScreen(MainDisplay)), &RTextColor, &TextColor);
 
-    XftDrawStringUtf8(Draw, &TextColor, Font, ScreenWidth / 2.2, ScreenHeight / 2, reinterpret_cast<const XftChar8*>(Text.c_str()), Text.length());
+    XftDrawStringUtf8(Draw, &TextColor, Font, std::floor((ScreenWidth - Text.length()) / 2.0), ScreenHeight / 2, reinterpret_cast<const XftChar8*>(Text.c_str()), Text.length());
     while (true) {
         XEvent GeneralEvent = {};
         XNextEvent(MainDisplay, &GeneralEvent);
