@@ -5,4 +5,4 @@ SRC := text.cpp
 OUT := font_shower
 
 main:
-	$(CC) $(CCF) $(SRC) -o $(OUT) `$(CCLF)`
+	@$(CC) $(CCF) $(SRC) -o $(OUT) `$(CCLF)`
