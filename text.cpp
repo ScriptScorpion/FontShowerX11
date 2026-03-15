@@ -58,7 +58,7 @@ int main() {
     RTextColor.alpha = 0xffff;
     XftColorAllocValue(MainDisplay, DefaultVisual(MainDisplay, DefaultScreen(MainDisplay)), DefaultColormap(MainDisplay, DefaultScreen(MainDisplay)), &RTextColor, &TextColor);
 
-    XftDrawStringUtf8(Draw, &TextColor, Font, std::floor((ScreenWidth - Text.length()) / 2.0), ScreenHeight / 2, reinterpret_cast<const XftChar8*>(Text.c_str()), Text.length());
+    XftDrawStringUtf8(Draw, &TextColor, Font, std::floor((ScreenWidth - (Text.length() * 30.0)) / 2.0), ScreenHeight / 2.0, reinterpret_cast<const XftChar8*>(Text.c_str()), Text.length());
     while (true) {
         XEvent GeneralEvent = {};
         XNextEvent(MainDisplay, &GeneralEvent);
